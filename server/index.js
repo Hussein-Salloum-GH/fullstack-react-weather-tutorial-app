@@ -1,20 +1,15 @@
-// تضمين ملفات الربط والتحويل
 const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 
-
-// قاعدة البيانات
 var db = require("./database");
 
-//متحولات البيئة 
 const ENV = process.env.NODE_ENV;
 const PORT = process.env.PORT || 5000;
 
-// تهيئة
 const app = express();
 
-// استخدام
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -22,6 +17,13 @@ app.use(bodyParser.json());
 // register API middlewares
 app.use("/api/cities", require("./api/cities"));
 app.use("/api/weather", require("./api/weather"));
+
+if (ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+    app.use((req, res) => {
+        res.sendFile(path.join(__dirname, '../client/build/index.html'));
+    });
+}
 
 // listen 4 clients
 app.listen(PORT, () => {

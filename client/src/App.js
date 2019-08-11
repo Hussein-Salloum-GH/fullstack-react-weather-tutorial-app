@@ -31,11 +31,11 @@ class App extends React.Component {
   };
   componentDidMount() {
     this.getCityList();
-    console.log(this.state);
+    //console.log(this.state);
   }
 
   componentDidUpdate() {
-    console.log(this.state);
+    //console.log(this.state);
   }
 
   //get all cities in database
@@ -52,13 +52,13 @@ class App extends React.Component {
     fetch(`/api/weather/${city}`)
       .then(res => res.json())
       .then(weather => {
-        console.log(weather);
+        //console.log(weather);
         this.setState({ weather });
       });
   }
 
   handleInputChange = (event) => {
-    console.log(this.state);
+    //console.log(this.state);
     this.setState({ newCityName: event.target.value });
   }
 
