@@ -36,7 +36,7 @@ class Database {
 
                 if (err) {
                     console.log(err.stack);
-                    callback({ error: "Database error." }, null);
+                    return callback({ error: "Database error." }, null);
                 }
 
                 callback({}, res.rows);

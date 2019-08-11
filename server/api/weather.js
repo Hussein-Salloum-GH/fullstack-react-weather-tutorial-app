@@ -2,11 +2,11 @@ var express = require("express");
 var weather = require("../modules/weather");
 var router = express.Router();
 
-router.get("/:city", function (req, res) {
+router.get("/:city", (req, res) => {
     var city = req.params.city;
     //console.log("City you are asked? ", city);
 
-    weather.retriveByCity(city, function (err, weather) {
+    weather.retriveByCity(city, (err, weather) => {
         if (err)
             return res.json(err);
         return res.json(weather)
